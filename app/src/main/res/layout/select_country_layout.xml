@@ -1,0 +1,23 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_corner_rect_15dp"
+    android:orientation="vertical">
+
+
+
+
+    <EditText
+        android:id="@+id/editText_carrierNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:visibility="gone"
+        android:hint="phone"
+        android:inputType="phone"
+        android:singleLine="true" />
+
+
+
+</androidx.cardview.widget.CardView>
