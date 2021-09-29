@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14210526315789473" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_10dp.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_15dp.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_25dp.xml" value="0.36944444444444446" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_5dp.xml" value="0.14210526315789473" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/message_box.xml" value="0.27890625" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/popup_layout.xml" value="0.27890625" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/select_country_layout.xml" value="0.156640625" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14210526315789473" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14210526315789473" />
       </map>
     </option>
   </component>
