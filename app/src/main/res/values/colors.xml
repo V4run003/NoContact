@@ -10,6 +10,7 @@
     <color name="background">#FFFFFFFF</color>
     <color name="negative_bw">#FF000000</color>
     <color name="text_color">#FF000000</color>
+    <color name="card_color">#E6E6E6</color>
 
     <color name="text_color_negative_bw">#FFFFFFFF</color>
     <color name="edittext_bg">#E3E3E3</color>
