@@ -11,8 +11,8 @@ import com.nxet.nocontact.DataClasses.Data
 interface DataDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addData(data : Data)
+    suspend fun addData(data: Data)
 
     @Query("SELECT * FROM data_table ORDER BY id ASC")
-    fun readAllData() : LiveData<List<Data>>
+    fun readAllData(): LiveData<List<Data>>
 }

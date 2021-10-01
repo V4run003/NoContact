@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:editable="false"
         android:visibility="gone"
-        android:hint="phone"
+        android:hint="@string/phone"
         android:inputType="phone"
         android:singleLine="true" />
 

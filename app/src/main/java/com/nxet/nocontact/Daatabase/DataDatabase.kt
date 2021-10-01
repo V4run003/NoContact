@@ -7,26 +7,26 @@ import androidx.room.RoomDatabase
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.Interfaces.DataDao
 
-@Database(entities = [Data :: class],version = 1,exportSchema = false)
+@Database(entities = [Data::class], version = 1, exportSchema = false)
 abstract class DataDatabase : RoomDatabase() {
 
-    abstract fun dataDao() : DataDao
+    abstract fun dataDao(): DataDao
 
-    companion object{
-        private var INSTANCE : DataDatabase? = null
+    companion object {
+        private var INSTANCE: DataDatabase? = null
 
-        fun getDatabase(context: Context) : DataDatabase{
+        fun getDatabase(context: Context): DataDatabase {
 
             val tempInstance = INSTANCE
-            if (tempInstance!=null){
+            if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this){
+            synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataDatabase::class.java,
                     "data_database"
-                ) . build()
+                ).build()
                 INSTANCE = instance
                 return instance
             }

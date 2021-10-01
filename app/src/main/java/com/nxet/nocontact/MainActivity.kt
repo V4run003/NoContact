@@ -1,8 +1,5 @@
 package com.nxet.nocontact
 
-import android.R.attr
-import android.R.attr.*
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,10 +7,9 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
-import android.view.Menu
-import android.view.View
-import android.view.animation.AlphaAnimation
-import android.widget.*
+import android.widget.EditText
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,97 +21,104 @@ import com.nxet.nocontact.Adapters.ListAdapter
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.Interfaces.RecyclerViewClick
 import java.util.*
-import java.util.Locale.*
-import kotlin.Comparator
+import java.util.Locale.getDefault
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() , RecyclerViewClick {
+class MainActivity : AppCompatActivity(), RecyclerViewClick {
 
-    lateinit var numberEditText : EditText
+    lateinit var numberEditText: EditText
     lateinit var countryEditText: EditText
     lateinit var LabelEditText: EditText
     lateinit var sendmsgButton: RelativeLayout
-    lateinit var ccp : CountryCodePicker
+    lateinit var ccp: CountryCodePicker
     private lateinit var mDataViewModel: DataViewModel
     lateinit var adapter: ListAdapter
-    lateinit var searchEdittext : EditText
-    lateinit var textWatcher : TextWatcher
-    lateinit var recyclerView  : RecyclerView
+    lateinit var searchEdittext: EditText
+    lateinit var textWatcher: TextWatcher
+    lateinit var recyclerView: RecyclerView
     var list = emptyList<Data>()
-    lateinit var empty : List<Data>
-
-
-
+    lateinit var empty: List<Data>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        adapter = ListAdapter(applicationContext,this)
+        adapter = ListAdapter(applicationContext, this)
         init()
 
         textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
             }
+
             override fun afterTextChanged(s: Editable) {
                 if (s.toString().isNotEmpty()) {
                     filter(s.toString())
-                    Log.e("teatext3","tee")
+                    Log.e("teatext3", "tee")
                     searchEdittext.isFocusable = true
+                } else {
+                    adapter.filterList(empty as java.util.ArrayList<Data>)
                 }
             }
         }
 
         searchEdittext.addTextChangedListener(textWatcher)
 
-        sendmsgButton.setOnClickListener{
+        sendmsgButton.setOnClickListener {
             ccp.registerCarrierNumberEditText(countryEditText)
             val country = ccp.selectedCountryCode
             val number = numberEditText.text.toString()
             val label = LabelEditText.text.toString()
 
-            instertTodatabase(country , number , label)
+            if (number.isNotEmpty() && containsDigit(number)) {
+                if (label.isNotEmpty()) {
+                    instertTodatabase(country, number, label)
 
-                val url = "https://api.whatsapp.com/send?phone=$country$number"
-                val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse(url)
-                startActivity(i)
+                    val url = "https://api.whatsapp.com/send?phone=$country$number"
+                    val i = Intent(Intent.ACTION_VIEW)
+                    i.data = Uri.parse(url)
+                    startActivity(i)
+                } else {
+                    LabelEditText.error = "Enter a Label"
+                    LabelEditText.isFocused
+                    Toast.makeText(this, "Enter a Lable", Toast.LENGTH_SHORT).show()
+                }
+
+
+            } else {
+                numberEditText.error = "Enter a valid number"
+                numberEditText.isFocused
+                Toast.makeText(this, "Enter a Valid Number", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
-
-
-
-
-
-
 
 
     }
 
 
     private fun instertTodatabase(country: String, number: String, label: String) {
-        if (inputCheck(country,number,label)){
-            val combine = country+number
-            val data = Data(0, combine,label)
+        if (inputCheck(country, number, label)) {
+            val combine = country + number
+            val data = Data(0, combine, label)
             mDataViewModel.addData(data)
-            Toast.makeText(this,"Created Successfully",Toast.LENGTH_SHORT).show()
-        } else
-        {
-            Toast.makeText(this,"Fill out Forms",Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this,"Created Successfully",Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun inputCheck(country: String, number: String, label: String): Boolean {
-        return !(TextUtils.isEmpty(country)&&TextUtils.isEmpty(number)&& TextUtils.isEmpty(label))
+        return !(TextUtils.isEmpty(country) && TextUtils.isEmpty(number) && TextUtils.isEmpty(label))
 
     }
 
 
-    fun init(){
+    fun init() {
 
 
         numberEditText = findViewById(R.id.number_editText)
@@ -129,18 +132,17 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         mDataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
-        mDataViewModel.readAllData.observe(this, Observer {data->
+        mDataViewModel.readAllData.observe(this, Observer { data ->
             val list: List<Data> = data
             Collections.reverse(list)
             adapter.setData(list)
             empty = list
         })
 
-        val collapsingToolbarLayout :CollapsingToolbarLayout= findViewById(R.id.collapsing_toolbar)
+        val collapsingToolbarLayout: CollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
         collapsingToolbarLayout.setTitle("No Contact.")
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
-
 
 
     }
@@ -167,7 +169,11 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
         adapter.filterList(filteredNames)
     }
 
+    private fun containsDigit(text: String): Boolean {
+        val numeric = text.matches("-?\\d+(\\.\\d+)?".toRegex())
+        return numeric
 
+    }
 
 
 }

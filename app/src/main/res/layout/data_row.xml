@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/roboto_bold"
-                android:text="A"
+                android:text="@string/a"
                 android:textAllCaps="true"
                 android:textColor="@color/btn_text" />
 
@@ -41,7 +41,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_toRightOf="@+id/contact_icon_wrap"
+            android:layout_toEndOf="@+id/contact_icon_wrap"
             android:layout_marginHorizontal="25dp"
             android:layout_height="wrap_content">
 
@@ -50,8 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
+                android:singleLine="true"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Jane Doe"
+                android:text="@string/jane_doe"
                 android:textColor="@color/btn_text" />
 
             <TextView
@@ -60,8 +61,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelview"
                 android:layout_marginBottom="15dp"
+                android:singleLine="true"
                 android:fontFamily="@font/roboto_medium"
-                android:text="911234567890"
+                android:text="@string/_1234567890"
                 android:textColor="@color/btn_text" />
 
         </RelativeLayout>

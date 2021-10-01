@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">No Contact</string>
+    <string name="enter_whatsapp_number">Enter Whatsapp Number</string>
+    <string name="enter_a_label">Enter a Label</string>
+    <string name="send_whatsapp_message">Send Whatsapp Message</string>
+    <string name="search">Search</string>
+    <string name="phone_number_amp_label"><![CDATA[Phone Number & Label]]></string>
+    <string name="jane_doe">Jane Doe</string>
+    <string name="a">A</string>
+    <string name="_1234567890">1234567890</string>
+    <string name="phone">phone</string>
 </resources>

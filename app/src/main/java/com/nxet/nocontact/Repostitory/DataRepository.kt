@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.Interfaces.DataDao
 
-class DataRepository (private val dataDao: DataDao) {
+class DataRepository(private val dataDao: DataDao) {
 
-    val readAllData : LiveData<List<Data>> = dataDao.readAllData()
+    val readAllData: LiveData<List<Data>> = dataDao.readAllData()
 
-    suspend fun addData(data : Data){
+    suspend fun addData(data: Data) {
 
 
         dataDao.addData(data)
