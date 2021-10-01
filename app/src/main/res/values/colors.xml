@@ -14,4 +14,10 @@
 
     <color name="text_color_negative_bw">#FFFFFFFF</color>
     <color name="edittext_bg">#E3E3E3</color>
+
+
+    <color name="light_bg">#FEFEFF</color>
+    <color name="edittext_bg_sea">#EEF2FB</color>
+    <color name="btn_bg">#C3E7FF</color>
+    <color name="btn_text">#001C34</color>
 </resources>

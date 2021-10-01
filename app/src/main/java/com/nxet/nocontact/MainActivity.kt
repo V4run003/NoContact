@@ -6,8 +6,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Log
 import android.view.Menu
+import android.view.View
+import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -18,13 +23,14 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.hbb20.CountryCodePicker
 import com.nxet.nocontact.Adapters.ListAdapter
 import com.nxet.nocontact.DataClasses.Data
+import com.nxet.nocontact.Interfaces.RecyclerViewClick
 import java.util.*
 import java.util.Locale.*
 import kotlin.Comparator
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , RecyclerViewClick {
 
     lateinit var numberEditText : EditText
     lateinit var countryEditText: EditText
@@ -32,9 +38,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var sendmsgButton: RelativeLayout
     lateinit var ccp : CountryCodePicker
     private lateinit var mDataViewModel: DataViewModel
-    lateinit var tempList: List<Data>
-    lateinit var  list: List<Data>
     lateinit var adapter: ListAdapter
+    lateinit var searchEdittext : EditText
+    lateinit var textWatcher : TextWatcher
+    lateinit var recyclerView  : RecyclerView
+    var list = emptyList<Data>()
 
 
 
@@ -43,20 +51,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         sendmsgButton.setOnClickListener{
             ccp.registerCarrierNumberEditText(countryEditText)
             val country = ccp.selectedCountryCode
@@ -70,6 +64,14 @@ class MainActivity : AppCompatActivity() {
                 i.data = Uri.parse(url)
                 startActivity(i)
         }
+
+
+
+
+
+
+
+
     }
 
     private fun instertTodatabase(country: String, number: String, label: String) {
@@ -102,9 +104,11 @@ class MainActivity : AppCompatActivity() {
         ccp = findViewById(R.id.ccp)
         LabelEditText = findViewById(R.id.label_editText)
         mDataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
+        searchEdittext = findViewById(R.id.search_label)
 
-        val adapter =  ListAdapter(applicationContext)
-        val recyclerView  : RecyclerView = findViewById(R.id.recycler)
+
+        val adapter =  ListAdapter(applicationContext,this)
+        recyclerView = findViewById(R.id.recycler)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -114,16 +118,65 @@ class MainActivity : AppCompatActivity() {
             val list: List<Data> = data
             Collections.reverse(list)
             adapter.setData(list)
-            tempList = list
         })
 
 
+
+
+
         val collapsingToolbarLayout :CollapsingToolbarLayout= findViewById(R.id.collapsing_toolbar)
-        collapsingToolbarLayout.setTitle("No Contact,")
+        collapsingToolbarLayout.setTitle("No Contact.")
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
+
+        textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+            override fun afterTextChanged(s: Editable) {
+                if (s.toString().isNotEmpty()) {
+                    filter(s.toString())
+                    Log.e("teatext3","tee")
+                    searchEdittext.isFocusable = true
+                }
+            }
+        }
+
+        searchEdittext.addTextChangedListener(textWatcher)
+
     }
 
+    override fun onItemClick(number: String) {
+
+        val url = "https://api.whatsapp.com/send?phone=$number"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
+
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun filter(toString: String) {
+        Log.e("teatext2","tee")
+        val filteredList = emptyList<Data>()
+        val items  : List<Data> = list
+        for (item in items) {
+            if (item.label.lowercase(getDefault()).contains(toString.lowercase(getDefault()))) {
+                Log.e("teatext","tee")
+                filteredList.toMutableList().add(item)
+            }
+            if (!filteredList.isEmpty()) {
+                Log.e("teatext1","tee")
+               adapter.filterList(filteredList)
+            }
+        }
+
+
+    }
 
 
 }

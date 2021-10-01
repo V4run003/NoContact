@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:background="@color/background"
         app:expandedTitleGravity="top"
+        android:layout_gravity="start"
         app:expandedTitleTextAppearance="@font/roboto_bold"
         app:layout_scrollFlags="exitUntilCollapsed|scroll"
         app:title="No Contact."
@@ -57,7 +58,6 @@
   <RelativeLayout
       android:layout_width="wrap_content"
       android:layout_below="@id/title"
-      android:layout_marginVertical="25dp"
       android:id="@+id/cont1"
       android:layout_height="wrap_content">
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginVertical="25dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Phone Number &amp; Label"
         android:textColor="@color/text_color"
@@ -83,18 +83,20 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_corner_rect_5dp"
-        android:backgroundTint="@color/edittext_bg"
+
+        android:background="@drawable/rounded_corner_rect_35dp"
+        android:backgroundTint="@color/edittext_bg_sea"
+        android:elevation="5dp"
         android:gravity="center_vertical"
         android:paddingVertical="5dp"
+        android:paddingStart="5dp"
         android:visibility="visible"
-        android:elevation="5dp"
         app:ccpDialog_backgroundColor="@color/background"
+        app:ccpDialog_cornerRadius="15dp"
         app:ccpDialog_fastScroller_bubbleColor="@color/text_color_negative_bw"
         app:ccpDialog_fastScroller_handleColor="@color/text_color"
         app:ccpDialog_showFlag="true"
         app:ccpDialog_textColor="@color/text_color"
-        app:ccpDialog_cornerRadius="15dp"
         app:ccp_arrowColor="@color/text_color"
         app:ccp_contentColor="@color/text_color"
         app:ccp_countryPreference="us,in"
@@ -103,7 +105,7 @@
         app:ccp_showNameCode="false"
         app:ccp_showPhoneCode="false"
 
-        />
+        tools:ignore="RtlSymmetry" />
 
 
     <EditText
@@ -139,14 +141,13 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="15dp"
         android:layout_toRightOf="@+id/ccp"
-        android:background="@drawable/rounded_corner_rect_5dp"
-        android:backgroundTint="@color/edittext_bg"
+        android:background="@drawable/rounded_corner_rect_35dp"
+        android:backgroundTint="@color/edittext_bg_sea"
         android:elevation="5dp"
         android:fontFamily="@font/roboto_regular"
         android:hint="Enter Whatsapp Number"
         android:padding="15dp"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color" />
+        android:textColor="@color/text_color" />
 
 
     <EditText
@@ -159,14 +160,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_corner_rect_5dp"
-        android:backgroundTint="@color/edittext_bg"
+        android:background="@drawable/rounded_corner_rect_35dp"
+        android:backgroundTint="@color/edittext_bg_sea"
         android:elevation="5dp"
         android:fontFamily="@font/roboto_regular"
         android:hint="Enter a Label"
         android:padding="15dp"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color" />
+        android:textColor="@color/text_color"/>
 
 
     <RelativeLayout
@@ -180,8 +180,10 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_corner_rect_5dp"
-        android:backgroundTint="@color/negative_bw">
+        android:elevation="5dp"
+        android:background="@drawable/rounded_corner_rect_35dp"
+        android:backgroundTint="@color/btn_bg"
+        android:padding="5dp">
 
 
       <TextView
@@ -193,9 +195,10 @@
           android:layout_marginVertical="10dp"
           android:layout_marginStart="15dp"
           android:layout_marginEnd="10dp"
-          android:fontFamily="@font/roboto_bold"
+          android:fontFamily="@font/roboto_regular"
           android:text="Send Whatsapp Message"
-          android:textColor="@color/background" />
+          android:textColor="@color/btn_text"
+          android:textSize="15dp" />
 
 
       <ImageView
@@ -206,22 +209,71 @@
           android:layout_marginEnd="15dp"
           android:layout_toRightOf="@id/send_txt"
           android:src="@drawable/ic_round_send_24"
-          app:tint="@color/background" />
+          app:tint="@color/btn_text" />
 
     </RelativeLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/sendMsg_btn"
-        android:layout_marginHorizontal="15dp" />
+        android:layout_margin="10dp"
+
+        android:background="@drawable/rounded_corner_rect_15dp"
+        android:backgroundTint="@color/light_bg">
+
+      <RelativeLayout
+          android:id="@+id/search_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
 
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/search_label"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/rounded_corner_rect_35dp"
+            android:backgroundTint="@color/edittext_bg_sea"
+            android:elevation="5dp"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="Search"
+            android:padding="15dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/rounded_corner_rect_35dp"
+            android:backgroundTint="@color/white"
+            android:elevation="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_round_search_24"
+            app:tint="@color/black"
+
+            />
 
 
+      </RelativeLayout>
+
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recycler"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@id/search_layout"
+          android:layout_marginHorizontal="15dp"
+          android:layout_marginBottom="50dp"
+          android:backgroundTint="@color/light_bg" />
+
+
+    </RelativeLayout>
 
   </RelativeLayout>
 

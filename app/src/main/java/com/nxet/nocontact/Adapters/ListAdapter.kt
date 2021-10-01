@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.R
 import android.R.attr.data
+import com.nxet.nocontact.Interfaces.RecyclerViewClick
 import java.util.*
 import kotlin.Comparator
 
 
-class ListAdapter(applicationContext: Context) : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(applicationContext: Context, private var recyclerViewClick: RecyclerViewClick) : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var dataList = emptyList<Data>()
     var context = applicationContext
@@ -27,7 +28,7 @@ class ListAdapter(applicationContext: Context) : RecyclerView.Adapter<ListAdapte
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
 
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(com.nxet.nocontact.R.layout.data_row ,  parent, false))
+        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.data_row ,  parent, false))
 
 
     }
@@ -46,12 +47,16 @@ class ListAdapter(applicationContext: Context) : RecyclerView.Adapter<ListAdapte
             icon.setText(char.uppercase())
         }
 
+
+
         val temp = currentItem.number
 
+        holder.itemView.setOnClickListener {
+            recyclerViewClick.onItemClick(temp)
+        }
 
-
-        label.setText(currentItem.label)
-        number.setText("+$temp")
+        label.text = currentItem.label
+        number.text = "+$temp"
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -60,6 +65,15 @@ class ListAdapter(applicationContext: Context) : RecyclerView.Adapter<ListAdapte
 
 
         notifyDataSetChanged()
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filterList(filteredList: List<Data>) {
+        if (!filteredList.isEmpty()) {
+            dataList = filteredList
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int {
