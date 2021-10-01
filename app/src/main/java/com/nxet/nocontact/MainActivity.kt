@@ -23,6 +23,10 @@ import com.nxet.nocontact.Interfaces.RecyclerViewClick
 import java.util.*
 import java.util.Locale.getDefault
 import kotlin.collections.ArrayList
+import android.content.pm.PackageManager
+
+
+
 
 
 class MainActivity : AppCompatActivity(), RecyclerViewClick {
@@ -141,6 +145,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClick {
 
         val collapsingToolbarLayout: CollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
         collapsingToolbarLayout.setTitle("No Contact.")
+        collapsingToolbarLayout.setExpandedTitleMargin(80,55,15,25)
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
 
@@ -173,6 +178,15 @@ class MainActivity : AppCompatActivity(), RecyclerViewClick {
         val numeric = text.matches("-?\\d+(\\.\\d+)?".toRegex())
         return numeric
 
+    }
+
+    private fun isPackageInstalled(packageName: String, packageManager: PackageManager): Boolean {
+        return try {
+            packageManager.getPackageInfo(packageName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
     }
 
 
