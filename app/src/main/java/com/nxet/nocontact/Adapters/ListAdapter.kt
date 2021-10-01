@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.R
 import android.R.attr.data
+import android.widget.Filter
 import com.nxet.nocontact.Interfaces.RecyclerViewClick
 import java.util.*
 import kotlin.Comparator
@@ -68,12 +69,11 @@ class ListAdapter(applicationContext: Context, private var recyclerViewClick: Re
     }
 
 
+
     @SuppressLint("NotifyDataSetChanged")
-    fun filterList(filteredList: List<Data>) {
-        if (!filteredList.isEmpty()) {
-            dataList = filteredList
-            notifyDataSetChanged()
-        }
+    fun filterList(filteredNames: ArrayList<Data>) {
+        this.dataList = filteredNames
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

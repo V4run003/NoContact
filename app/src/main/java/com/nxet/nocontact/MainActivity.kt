@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
     lateinit var textWatcher : TextWatcher
     lateinit var recyclerView  : RecyclerView
     var list = emptyList<Data>()
+    lateinit var empty : List<Data>
+
 
 
 
@@ -50,7 +52,27 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        adapter = ListAdapter(applicationContext,this)
         init()
+
+        textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+            override fun afterTextChanged(s: Editable) {
+                if (s.toString().isNotEmpty()) {
+                    filter(s.toString())
+                    Log.e("teatext3","tee")
+                    searchEdittext.isFocusable = true
+                }
+            }
+        }
+
+        searchEdittext.addTextChangedListener(textWatcher)
+
         sendmsgButton.setOnClickListener{
             ccp.registerCarrierNumberEditText(countryEditText)
             val country = ccp.selectedCountryCode
@@ -74,19 +96,17 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
 
     }
 
+
     private fun instertTodatabase(country: String, number: String, label: String) {
         if (inputCheck(country,number,label)){
             val combine = country+number
             val data = Data(0, combine,label)
             mDataViewModel.addData(data)
-
             Toast.makeText(this,"Created Successfully",Toast.LENGTH_SHORT).show()
-
         } else
         {
             Toast.makeText(this,"Fill out Forms",Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun inputCheck(country: String, number: String, label: String): Boolean {
@@ -105,47 +125,23 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
         LabelEditText = findViewById(R.id.label_editText)
         mDataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
         searchEdittext = findViewById(R.id.search_label)
-
-
-        val adapter =  ListAdapter(applicationContext,this)
         recyclerView = findViewById(R.id.recycler)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         mDataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
-
         mDataViewModel.readAllData.observe(this, Observer {data->
             val list: List<Data> = data
             Collections.reverse(list)
             adapter.setData(list)
+            empty = list
         })
-
-
-
-
 
         val collapsingToolbarLayout :CollapsingToolbarLayout= findViewById(R.id.collapsing_toolbar)
         collapsingToolbarLayout.setTitle("No Contact.")
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar)
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar)
 
-        textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
-            }
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-
-            }
-            override fun afterTextChanged(s: Editable) {
-                if (s.toString().isNotEmpty()) {
-                    filter(s.toString())
-                    Log.e("teatext3","tee")
-                    searchEdittext.isFocusable = true
-                }
-            }
-        }
-
-        searchEdittext.addTextChangedListener(textWatcher)
 
     }
 
@@ -159,24 +155,19 @@ class MainActivity : AppCompatActivity() , RecyclerViewClick {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun filter(toString: String) {
-        Log.e("teatext2","tee")
-        val filteredList = emptyList<Data>()
-        val items  : List<Data> = list
-        for (item in items) {
-            if (item.label.lowercase(getDefault()).contains(toString.lowercase(getDefault()))) {
-                Log.e("teatext","tee")
-                filteredList.toMutableList().add(item)
-            }
-            if (!filteredList.isEmpty()) {
-                Log.e("teatext1","tee")
-               adapter.filterList(filteredList)
-            }
+    private fun filter(text: String) {
+        //new array list that will hold the filtered data
+        val filteredNames = ArrayList<Data>()
+        //looping through existing elements and adding the element to filtered list
+        empty.filterTo(filteredNames) {
+            //if the existing elements contains the search input
+            it.label.lowercase(getDefault()).contains(text.lowercase(getDefault()))
         }
-
-
+        //calling a method of the adapter class and passing the filtered list
+        adapter.filterList(filteredNames)
     }
+
+
 
 
 }
