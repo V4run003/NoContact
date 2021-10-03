@@ -18,4 +18,5 @@
     <color name="edittext_bg_sea">#202123</color>
     <color name="btn_bg">#004A77</color>
     <color name="btn_text">#CBF3FF</color>
+    <color name="stroke_radio_regular">#1E88E5</color>
 </resources>

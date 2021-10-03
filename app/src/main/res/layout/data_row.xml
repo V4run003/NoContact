@@ -61,10 +61,35 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/labelview"
                 android:layout_marginBottom="15dp"
+
+                android:fontFamily="@font/roboto_regular"
                 android:singleLine="true"
-                android:fontFamily="@font/roboto_medium"
                 android:text="@string/_1234567890"
                 android:textColor="@color/btn_text" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/delete_icon_wrap"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/btn_bg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_delete_24"
+                android:layout_centerInParent="true"
+                app:tint="@color/btn_text" />
+
+
 
         </RelativeLayout>
 

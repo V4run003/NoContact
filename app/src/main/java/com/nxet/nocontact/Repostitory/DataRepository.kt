@@ -13,4 +13,13 @@ class DataRepository(private val dataDao: DataDao) {
 
         dataDao.addData(data)
     }
+
+    suspend fun deleteData(data: Data){
+        dataDao.deleteData(data)
+
+    }
+
+    suspend fun deleteAllData(){
+        dataDao.deleteAlldata()
+    }
 }

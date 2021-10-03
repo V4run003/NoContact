@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.nxet.nocontact.Daatabase.DataDatabase
 import com.nxet.nocontact.DataClasses.Data
 import com.nxet.nocontact.Repostitory.DataRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DataViewModel(application: Application) : AndroidViewModel(application) {
@@ -26,4 +27,18 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
             repository.addData(data)
         }
     }
+
+    fun deleteData(data:Data){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteData(data)
+        }
+    }
+
+    fun deleteAlldata(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllData()
+        }
+    }
+
+
 }

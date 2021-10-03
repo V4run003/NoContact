@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.NoContact" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimary">@color/btn_text</item>
         <item name="colorPrimaryVariant">@color/background</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:windowLightStatusBar" >true</item>
@@ -28,4 +28,19 @@
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
+
+    <style name="Theme.NoContact.AdAttribution">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:text">Ad</item>
+        <item name="android:background">#FFCC66</item>
+        <item name="android:width">15dp</item>
+        <item name="android:height">15dp</item>
+    </style>
+
+
+
 </resources>

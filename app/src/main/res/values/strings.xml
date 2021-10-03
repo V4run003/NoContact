@@ -9,4 +9,7 @@
     <string name="a">A</string>
     <string name="_1234567890">1234567890</string>
     <string name="phone">phone</string>
+    <string name="admobAppLevelIDManifest">ca-app-pub-9389012961312267~6782468645</string>
+    <string name="admob_interstitial_ad1">ca-app-pub-9389012961312267/7903978621</string>
+    <string name="native_ad_id">ca-app-pub-9389012961312267/1604974216</string>
 </resources>

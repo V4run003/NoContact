@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14210526315789473" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable-v24/rate_button_background.xml" value="0.225" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable-v24/rounded_corner_rect_ad_15dp.xml" value="0.382051282051282" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/ic_round_send_24.xml" value="0.2450657894736842" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/round_bg.xml" value="0.2450657894736842" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_10dp.xml" value="0.27708333333333335" />
@@ -12,8 +14,9 @@
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_35dp.xml" value="0.2450657894736842" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/drawable/rounded_corner_rect_5dp.xml" value="0.14210526315789473" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/data_row.xml" value="0.2348684210526316" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/data_row.xml" value="0.33" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/message_box.xml" value="0.27890625" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/native_ad_layout.xml" value="0.25" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/popup_layout.xml" value="0.27890625" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/layout/select_country_layout.xml" value="0.156640625" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/noContact/app/src/main/res/menu/menu.xml" value="0.2348684210526316" />

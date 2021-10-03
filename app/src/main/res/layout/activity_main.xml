@@ -140,13 +140,14 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="25dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_toRightOf="@+id/ccp"
+                    android:layout_toEndOf="@+id/ccp"
                     android:background="@drawable/rounded_corner_rect_35dp"
                     android:backgroundTint="@color/edittext_bg_sea"
                     android:elevation="5dp"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/enter_whatsapp_number"
                     android:inputType="phone"
+                    android:maxLength="12"
                     android:padding="15dp"
                     android:singleLine="true"
                     android:textColor="@color/text_color" />
@@ -168,6 +169,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/enter_a_label"
                     android:inputType="textCapWords"
+                    android:maxLength="15"
                     android:padding="15dp"
                     android:singleLine="true"
                     android:textColor="@color/text_color" />
@@ -217,12 +219,22 @@
 
                 </RelativeLayout>
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                   android:background="@drawable/rounded_corner_rect_ad_15dp"
+                    android:elevation="3dp"
+                    android:layout_below="@+id/sendMsg_btn"
+                    android:id="@+id/fl_adplaceholder"/>
+
+
 
                 <TextView
                     android:id="@+id/search_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/sendMsg_btn"
+                    android:layout_below="@id/fl_adplaceholder"
                     android:layout_marginVertical="15dp"
                     android:layout_marginStart="30dp"
                     android:fontFamily="@font/roboto_regular"
@@ -231,14 +243,12 @@
                     android:textSize="18sp" />
 
 
-
-
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/search_txt"
-                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
                     android:background="@drawable/rounded_corner_rect_15dp"
                     android:backgroundTint="@color/light_bg">
@@ -264,24 +274,22 @@
                             android:elevation="5dp"
                             android:fontFamily="@font/roboto_medium"
                             android:hint="@string/search"
+                            android:maxLength="15"
                             android:padding="15dp"
                             android:singleLine="true" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginEnd="25dp"
                             android:background="@drawable/rounded_corner_rect_35dp"
                             android:backgroundTint="@color/white"
                             android:elevation="5dp"
                             android:padding="5dp"
                             android:src="@drawable/ic_round_search_24"
-                            app:tint="@color/black"
-                            />
-
-
+                            app:tint="@color/black" />
 
 
                     </RelativeLayout>
@@ -292,7 +300,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/search_layout"
-                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginHorizontal="10dp"
                         android:layout_marginBottom="5dp"
                         android:backgroundTint="@color/light_bg" />
 
