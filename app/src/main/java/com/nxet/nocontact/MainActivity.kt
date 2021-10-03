@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClick {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         mDataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
-        mDataViewModel.readAllData.observe(this, Observer { data ->
+        mDataViewModel.readAllData.observe(this, { data ->
             val list: List<Data> = data
             Collections.reverse(list)
             adapter.setData(list)
@@ -364,14 +364,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewClick {
 
     }
 
-    private fun isPackageInstalled(packageName: String, packageManager: PackageManager): Boolean {
-        return try {
-            packageManager.getPackageInfo(packageName, 0)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            false
-        }
-    }
 
 
 }
